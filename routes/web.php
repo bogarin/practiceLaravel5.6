@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','PagesController@home');
+Route::get('home','PagesController@home')->name('home');
+Route::get('Bienvenido/{nombre?}','PagesController@saludo')
+->name('hola')->where('nombre',"[A-Za-z]+");
+Route::post('contacto','PagesController@message');
+
+// TODO:poner las rutas mas limpias de crud mensajes
+Route::resource('mensajes','MessagesController');
+
+// TODO:poner las rutas mas limpias de crud usuarios
+Route::resource('usuarios','UsersController');
